@@ -1,0 +1,90 @@
+/* ==== North America P&C Insurance Brokers — shared styles ==== */
+html { scroll-behavior: smooth; scroll-padding-top: 128px; }
+body { font-feature-settings: "palt"; }
+
+.eyebrow { letter-spacing:.35em; font-size:.72rem; text-transform:uppercase; }
+.gold-rule { background: linear-gradient(90deg,#C9A227 0%,#E3C56A 55%,transparent 100%); height:2px; }
+
+/* Buttons */
+.btn-gold { transition: background-color .25s, transform .2s, box-shadow .25s; }
+.btn-gold:hover { background-color:#E3C56A; transform: translateY(-2px); box-shadow:0 14px 30px -10px rgba(201,162,39,.55); }
+.btn-gold:active { transform: translateY(0); }
+.btn-outline { transition: background-color .25s, color .25s, border-color .25s; }
+
+/* Cards */
+.card-hover { transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .35s; }
+.card-hover:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -18px rgba(11,31,58,.28); border-color:#C9A227; }
+
+/* Desktop nav dropdowns */
+.nav-item { position: relative; }
+.nav-trigger { position: relative; }
+.nav-trigger::after { content:""; position:absolute; left:0; bottom:-4px; width:0; height:2px; background:#C9A227; transition:width .3s; }
+.nav-item:hover .nav-trigger::after,
+.nav-item.is-active .nav-trigger::after { width:100%; }
+.nav-dropdown {
+  position:absolute; top:100%; left:50%; transform:translate(-50%,10px);
+  min-width: 15rem; opacity:0; visibility:hidden; pointer-events:none;
+  transition: opacity .25s, transform .25s, visibility .25s;
+  padding-top: 14px;
+}
+.nav-item:hover .nav-dropdown,
+.nav-item:focus-within .nav-dropdown {
+  opacity:1; visibility:visible; pointer-events:auto; transform:translate(-50%,0);
+}
+.nav-dropdown-inner { background:#0B1F3A; border:1px solid rgba(255,255,255,.12); border-top:2px solid #C9A227; box-shadow:0 24px 50px -12px rgba(6,15,31,.6); }
+.nav-dropdown a { display:block; padding:.7rem 1.25rem; font-size:.875rem; color:rgba(255,255,255,.75); transition: background-color .2s, color .2s, padding-left .2s; white-space:nowrap; }
+.nav-dropdown a:hover { background:rgba(255,255,255,.06); color:#E3C56A; padding-left:1.55rem; }
+
+/* Scroll reveal */
+.reveal { opacity:0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
+.reveal.in { opacity:1; transform:none; }
+
+/* Risk bars (insights) */
+.riskbar { width:0; transition: width 1.4s cubic-bezier(.22,1,.36,1) .15s; }
+.riskbar.in { width: var(--w); }
+
+/* Page hero band */
+.page-hero { background: linear-gradient(115deg,#060F1F 0%, #0B1F3A 58%, #12294B 100%); position:relative; overflow:hidden; }
+.page-hero::after {
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.07;
+  background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:64px 64px;
+}
+
+/* Home hero */
+.hero-bg::before{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(105deg, rgba(6,15,31,.96) 0%, rgba(11,31,58,.88) 46%, rgba(11,31,58,.55) 100%),
+    url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+}
+
+/* Sticky side rail (desktop) */
+.side-rail { position:fixed; right:0; top:45%; z-index:40; display:flex; flex-direction:column; }
+.side-rail a, .side-rail button {
+  display:flex; flex-direction:column; align-items:center; gap:.25rem;
+  width:64px; padding:.8rem .4rem; font-size:.7rem; letter-spacing:.08em;
+  background:#0B1F3A; color:rgba(255,255,255,.85); border-bottom:1px solid rgba(255,255,255,.12);
+  transition: background-color .25s, color .25s;
+}
+.side-rail a:hover, .side-rail button:hover { background:#C9A227; color:#060F1F; }
+@media (max-width:1023px){ .side-rail{ display:none; } }
+
+/* FAQ accordion */
+details.faq-item summary { cursor:pointer; list-style:none; }
+details.faq-item summary::-webkit-details-marker { display:none; }
+details.faq-item .faq-chevron { transition: transform .3s; }
+details.faq-item[open] .faq-chevron { transform: rotate(45deg); }
+
+/* Timeline (claims process) */
+.step-line { position:absolute; left:23px; top:48px; bottom:-8px; width:2px; background:linear-gradient(#C9A227, rgba(201,162,39,.15)); }
+
+/* Focus visibility */
+input:focus, textarea:focus, select:focus, button:focus-visible, a:focus-visible { outline: 2px solid #C9A227; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  .reveal, .riskbar, .card-hover, .btn-gold, .nav-dropdown { transition:none !important; }
+  .reveal { opacity:1; transform:none; }
+  .riskbar { width: var(--w); }
+}
